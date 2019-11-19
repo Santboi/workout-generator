@@ -1,8 +1,14 @@
 <template>
-  <div>
-    <MuscleModelFront v-if="showingFront"/>
-    <MuscleModelBack v-else />
-  </div>
+    <MuscleModelFront
+      v-if="showingFront"
+      :active-zones="activeZones"
+      :handle-zone-click="handleZoneClick"
+    />
+    <MuscleModelBack
+      v-else
+      :active-zones="activeZones"
+      :handle-zone-click="handleZoneClick"
+    />
 </template>
 <script>
   import MuscleModelFront from './MuscleModelFront.vue'
@@ -19,8 +25,17 @@
        required: true,
      }
    },
-   data: () => ({
-      //
-    })
+   computed: {
+     activeZones() {
+       return this.$store.state.zones
+     }
+   },
+   methods: {
+     handleZoneClick(zone) {
+      return this.$store.state.zones.includes(zone)
+        ? this.$store.dispatch('removeZone', zone)
+        : this.$store.dispatch('addZone', zone)
+     }
+   }
   }
-</script>
+</script> 

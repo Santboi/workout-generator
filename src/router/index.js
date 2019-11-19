@@ -23,7 +23,6 @@ const routes = [
     components: {
       default: Workouts,
       toolbar: Toolbar,
-      speedDial: SpeedDial,
     }
   }
 ]

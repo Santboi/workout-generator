@@ -1,9 +1,20 @@
 <template>
-  <div class="home">
-    <MuscleModel
-      :showing-front="false"
-    />
-  </div>
+  <v-row
+    class="home"
+    justify="center"
+  >
+    <v-col cols="9">
+      
+      <v-row justify="center">
+        <MuscleModel :showing-front="showingFront"/>
+        <v-switch
+          v-model="showingFront"
+          :label="switchLabel"
+        />
+      </v-row>
+    </v-col>
+    
+  </v-row>
 </template>
 
 <script>
@@ -14,6 +25,16 @@ export default {
   name: 'home',
   components: {
     MuscleModel
+  },
+  data() {
+    return {
+      showingFront: true,
+    }
+  },
+  computed: {
+    switchLabel() {
+      return this.showingFront ? 'Front' : 'Back'
+    }
   }
 }
 </script>
