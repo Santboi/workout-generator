@@ -182,7 +182,7 @@
    methods: {
      fillZone(zone) {
        return this.activeZones.includes(zone)
-        ? '#D50000'
+        ? '#2196F3'
         : '#000'
      }
    }
@@ -191,7 +191,7 @@
 
 <style scoped>
   svg {
-    height: 66.66vh;
+    height: 60vh;
     width: auto;
   }
 </style>

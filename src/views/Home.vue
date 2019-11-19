@@ -13,24 +13,27 @@
         <v-switch
           v-model="showingFront"
           :label="switchLabel"
+          color="blue"
           class="ma-0"
           hide-details
         />
       </v-row>
       <v-row class="mt-5">
-        <v-col cols="12">
+        <v-col
+          class="zones-container"
+          cols="12"
+        >
+          <span class="d-block grey--text text--darken-1 mb-2 caption">active workouts</span>
           <v-chip
             v-for="zone in activeZones"
             :key="zone"
             close
+            color="blue"
+            text-color="white"
             @click:close="removeZone(zone)"
-            small
             class="mr-2 mb-2"
           >
-            <v-icon small left>
-              mdi-weight-lifter
-            </v-icon>
-            <span class="text-capitalize">{{ zone }}</span>
+            {{ zone }}
           </v-chip>
         </v-col>
       </v-row>
@@ -67,3 +70,13 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .zones-container {
+    height: 125px;
+    max-height: 125px;
+    overflow: auto;
+    background-color: #DDD;
+    border-radius: 8px;
+  }
+</style>
