@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Toolbar from '../components/Toolbar.vue'
+import SpeedDial from '../components/SpeedDial.vue'
 
 Vue.use(VueRouter)
 
@@ -8,7 +10,11 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: Home
+    components: {
+      default: Home,
+      toolbar: Toolbar,
+      speedDial: SpeedDial,
+    },
   },
   {
     path: '/about',
