@@ -20,14 +20,13 @@
      MuscleModelBack
    },
    props: {
+     activeZones: {
+       type: Array,
+       required: true,
+     },
      showingFront: {
        type: Boolean,
        required: true,
-     }
-   },
-   computed: {
-     activeZones() {
-       return this.$store.state.zones
      }
    },
    methods: {

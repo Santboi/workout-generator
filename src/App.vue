@@ -4,13 +4,13 @@
     <router-view name="toolbar" />
 
     <v-content>
-      <v-container fluid>
+      <v-container fluid fill-height>
         <router-view name="default" />
       </v-container>
     </v-content>
 
     <!-- floating actions button -->
-    <router-view name="speedDial" />    
+    <!-- <router-view name="speedDial" />     -->
   </v-app>
 </template>
 
