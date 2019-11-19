@@ -4,41 +4,27 @@
       color="primary"
       dark
     >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
+      <div
+        class="d-flex align-center"
+        @click="navigateHome"
+      >
+        <v-icon class="mr-2">mdi-weight-lifter</v-icon>
+        <span class="font-weight-bold">Myo</span>
       </div>
 
       <v-spacer></v-spacer>
 
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+      <v-btn text small class="text-capitalize" :to="'/workouts'">Workouts</v-btn>
     </v-app-bar>
 </template>
 
 <script>
-    export default {
-        
-    }
+  export default {
+    name: 'toolbar',
+    methods: {
+      navigateHome() {
+        if (this.$route.name !== 'home') this.$router.push('/')
+      }
+    }  
+  }
 </script>

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Workouts from '../views/Workouts.vue'
 import Toolbar from '../components/Toolbar.vue'
 import SpeedDial from '../components/SpeedDial.vue'
 
@@ -17,12 +18,13 @@ const routes = [
     },
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/workouts',
+    name: 'workouts',
+    components: {
+      default: Workouts,
+      toolbar: Toolbar,
+      speedDial: SpeedDial,
+    }
   }
 ]
 
