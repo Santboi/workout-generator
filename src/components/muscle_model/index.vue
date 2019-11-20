@@ -13,6 +13,8 @@
 <script>
   import MuscleModelFront from './MuscleModelFront.vue'
   import MuscleModelBack from './MuscleModelBack.vue'
+  import { mapState, mapActions } from 'vuex'
+
   export default {
    name: 'MuscleModel',
    components: {
@@ -29,13 +31,17 @@
        required: true,
      }
    },
+   computed: {
+     ...mapState('exerciseModule', ['zones'])
+   },
    methods: {
      handleZoneClick(zone) {
-      return this.$store.state.zones.includes(zone)
-        ? this.$store.dispatch('removeZone', zone)
-        : this.$store.dispatch('addZone', zone)
-     }
-   }
+      return this.zones.includes(zone)
+        ? this.removeZone(zone)
+        : this.addZone(zone)
+     },
+     ...mapActions('exerciseModule', ['addZone', 'removeZone'])
+   },
   }
 </script> 
 

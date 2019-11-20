@@ -22,7 +22,7 @@
     <v-btn
       fab
       light
-      to='/workouts'
+      to='/favorites'
     >
       <v-icon>mdi-star</v-icon>
     </v-btn>
@@ -39,7 +39,8 @@
   </v-speed-dial>
 </template>
 <script>
-  // import { db } from '../main'
+  import { mapState, mapActions } from 'vuex'
+
 
   export default {
     name: 'SpeedDial',
@@ -49,28 +50,30 @@
       transition: 'slide-y-reverse-transition',
     }),
     computed: {
+      generateDisabled() {
+        return this.zones.length === 0
+      },
       currentWorkout() {
         return this.$store.state.exercises.currentWorkout
-      }
+      },
+      ...mapState('exerciseModule', ['zones'])
     },
     methods: {
-      generateWorkout() {
-        // this.$store.dispatch('toggleLoading', true)
-    
-        // this.exercisesToLoad.forEach(({ name }) => {
-        //   db.collection(`${name}_exercises`).doc('test').set({
-        //     name: name,
-        //     description: 'This is a description of an exercise' 
-        //   })
-        // })
-
-        // eslint-disable-next-line no-console
-        console.log(this.$store.state.exercises.current_workout);
-        
-        
-        // chest, biceps, core, quadrieceps, shoulders, forearms, calves, adductors, neck, trapezius, triceps, glutes, lower_back, hamstring
-
-      }
+      async generateWorkout() {
+        if (this.generateDisabled) {
+          this.$store.dispatch('showErrorSnack', 'You select muscle groups from the muscle diagram to generate a workout.')
+          return 
+        }
+        this.$store.dispatch('toggleLoading', true)
+        try {
+          await this.createWorkout()
+          this.$router.push('/create')
+        } catch (err) {
+          this.$store.dispatch('showErrorSnack', 'There was an issue retrieving your exercises.')
+        }
+        this.$store.dispatch('toggleLoading', false)
+      },
+      ...mapActions('exerciseModule', ['createWorkout'])
     }
   }
 </script>

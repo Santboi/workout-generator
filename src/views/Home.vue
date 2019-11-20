@@ -45,7 +45,7 @@ export default {
   },
   computed: {
     activeZones() {
-       return this.$store.state.zones
+       return this.$store.state.exerciseModule.zones
      },
     switchLabel() {
       return this.showingFront ? 'Front' : 'Back'

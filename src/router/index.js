@@ -1,7 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
+import Create from '../views/Create.vue'
 import Home from '../views/Home.vue'
-import Workouts from '../views/Workouts.vue'
+import Favorites from '../views/Favorites.vue'
+import Workout from '../views/Workout.vue'
+
 import Toolbar from '../components/Toolbar.vue'
 import SpeedDial from '../components/SpeedDial.vue'
 
@@ -18,11 +22,27 @@ const routes = [
     },
   },
   {
-    path: '/workouts',
-    name: 'workouts',
+    path: '/favorites',
+    name: 'favorites',
     components: {
-      default: Workouts,
+      default: Favorites,
       toolbar: Toolbar,
+    }
+  },
+  {
+    path: '/create',
+    name: 'create',
+    components: {
+      default: Create,
+      toolbar: Toolbar,
+    }
+  },
+  {
+    path: '/workout',
+    name: 'workout',
+    components: {
+      default: Workout,
+      toolbar: Toolbar
     }
   }
 ]
