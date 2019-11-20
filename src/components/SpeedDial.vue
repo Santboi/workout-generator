@@ -1,10 +1,6 @@
 <template>
   <v-speed-dial
     v-model="expanded"
-    :top="top"
-    :bottom="bottom"
-    :right="right"
-    :left="left"
     :direction="direction"
     :transition="transition"
     class="speed-dial__button"
@@ -21,6 +17,8 @@
         <v-icon v-else>mdi-menu</v-icon>
       </v-btn>
     </template>
+
+    <!-- favorited workouts -->
     <v-btn
       fab
       light
@@ -28,6 +26,8 @@
     >
       <v-icon>mdi-star</v-icon>
     </v-btn>
+
+     <!-- generate workout -->
     <v-btn
       fab
       dark
@@ -39,32 +39,37 @@
   </v-speed-dial>
 </template>
 <script>
+  // import { db } from '../main'
+
   export default {
     name: 'SpeedDial',
     data: () => ({
       direction: 'bottom',
       expanded: false,
-      fling: false,
-      tabs: null,
-      top: false,
-      right: false,
-      bottom: false,
-      left: false,
       transition: 'slide-y-reverse-transition',
     }),
     computed: {
-      activeFab () {
-        switch (this.tabs) {
-          case 'one': return { class: 'purple', icon: 'account_circle' }
-          case 'two': return { class: 'red', icon: 'edit' }
-          case 'three': return { class: 'green', icon: 'keyboard_arrow_up' }
-          default: return {}
-        }
-      },
+      currentWorkout() {
+        return this.$store.state.exercises.currentWorkout
+      }
     },
     methods: {
       generateWorkout() {
-        alert('generating');
+        // this.$store.dispatch('toggleLoading', true)
+    
+        // this.exercisesToLoad.forEach(({ name }) => {
+        //   db.collection(`${name}_exercises`).doc('test').set({
+        //     name: name,
+        //     description: 'This is a description of an exercise' 
+        //   })
+        // })
+
+        // eslint-disable-next-line no-console
+        console.log(this.$store.state.exercises.current_workout);
+        
+        
+        // chest, biceps, core, quadrieceps, shoulders, forearms, calves, adductors, neck, trapezius, triceps, glutes, lower_back, hamstring
+
       }
     }
   }

@@ -5,6 +5,7 @@
 
     <v-content>
       <v-container fluid fill-height>
+        <LoadingModal />
         <router-view name="default" />
       </v-container>
     </v-content>
@@ -16,10 +17,12 @@
 
 <script>
 
+import LoadingModal from './components/LoadingModal.vue'
+
 export default {
   name: 'App',
-  data: () => ({
-    //
-  }),
+  components: {
+    LoadingModal
+  }
 };
 </script>

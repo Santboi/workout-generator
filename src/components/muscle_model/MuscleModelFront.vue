@@ -189,16 +189,3 @@
    }
   }
 </script>
-
-<style scoped>
-  svg {
-    height: 60vh;
-    width: auto;
-  }
-  svg path, svg polyline {
-    fill: #757575;
-  }
-  svg g.active path{
-    fill: #1976d2;
-  }
-</style>

@@ -38,3 +38,18 @@
    }
   }
 </script> 
+
+<style>
+  svg {
+    height: 60vh;
+    width: auto;
+    filter: drop-shadow(0 0 5px rgba(25, 118, 210, .33));
+  }
+  svg path, svg polyline {
+    fill: #424242;
+    transition: fill .4s ease;
+  }
+  svg g.active path{
+    fill: #1976d2;
+  }
+</style>
