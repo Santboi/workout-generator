@@ -46,7 +46,7 @@
 
     <!-- neck -->
     <g
-      :fill="fillZone('neck')"
+      :class="fillZone('neck')"
       @click="handleZoneClick('neck')"
     >
       <path d="M179,133l16,34l-19-31h-1c-1.6,15,6.7,27.3,20,35C198.4,158.2,191.3,138.2,179,133"/>
@@ -57,7 +57,7 @@
 
     <!-- chest -->
     <g
-      :fill="fillZone('chest')"
+      :class="fillZone('chest')"
       @click="handleZoneClick('chest')"
     >
       <path d="M138,163c3.8,3.2,9.9,5.8,11.3,11c3.8,14-22.1,30-16.2,43c7.2,15.7,39,25.4,52.9,14.6c10.4-8,10.1-17.7,10-29.6
@@ -70,7 +70,7 @@
 
     <!-- shoulders -->
     <g
-      :fill="fillZone('shoulders')"
+      :class="fillZone('shoulders')"
       @click="handleZoneClick('shoulders')"
     >
       <path d="M96,224c17.2-7.6,37.9-15.8,46.1-34c2.8-6.2,7.5-15,1.7-20.8c-7.3-7.3-16.5-1.6-23.9,2.7C100.9,183,96,203.1,96,224"/>
@@ -80,7 +80,7 @@
 
     <!-- biceps -->
     <g
-      :fill="fillZone('biceps')"
+      :class="fillZone('biceps')"
       @click="handleZoneClick('biceps')"
     >
       <path d="M90,310c16-19.1,25-43.8,29.8-68c1-4.9,6.4-21.8,0-24.4c-9.2-3.6-21.8,10.5-25,17.4C84.6,256.7,89,286.8,90,310"/>
@@ -90,7 +90,7 @@
 
     <!-- forearms -->
     <g
-      :fill="fillZone('forearms')"
+      :class="fillZone('forearms')"
       @click="handleZoneClick('forearms')"
     >
       <path d="M48,384c20.8-14.8,34.1-48.7,38.1-73c0.8-4.9,4.8-26.8-3.2-28.1c-6.1-1-12.7,17.6-14.2,22.1c-4.5,13.5-4.3,27.3-7.6,41
@@ -107,7 +107,7 @@
 
     <!-- core -->
     <g
-      :fill="fillZone('core')"
+      :class="fillZone('core')"
       @click="handleZoneClick('core')"
     >
       <path d="M166,271c6.4-2.3,12.3-5.5,19-7.1c3.4-0.8,8.7-0.2,11.4-2.8c5.7-5.4,0-23.7-7.4-25.2C171,232.2,166.2,259,166,271"/>
@@ -132,7 +132,7 @@
 
     <!-- adductors -->
     <g
-      :fill="fillZone('adductors')"
+      :class="fillZone('adductors')"
       @click="handleZoneClick('adductors')"
     >
       <path d="M151,375c1.2,13.7,8.6,27.4,13.7,40c10,24.7,22.8,52.7,27.3,79h1l2.9-56.4L195,416l-17-14.3L151,375"/>
@@ -141,7 +141,7 @@
 
     <!-- quadriceps -->
     <g
-      :fill="fillZone('quadriceps')"
+      :class="fillZone('quadriceps')"
       @click="handleZoneClick('quadriceps')"
     >
       <path d="M253,372c-7.3,13.8-10.5,30.3-15.5,45c-13.8,41-27.3,81.3-15.3,125c3.5,12.8,10.7,24.4,16.8,36h1l10.8-87l0.2-81L253,372"
@@ -153,7 +153,7 @@
 
     <!-- calves -->
     <g
-      :fill="fillZone('calves')"
+      :class="fillZone('calves')"
       @click="handleZoneClick('calves')"
     >
       <path d="M177,553c-11.1,29.7-9.9,68.7-1,99h1c0.5-25.5,10.8-50.6,6.8-76C182.6,568.4,182.3,559,177,553"/>
@@ -181,9 +181,10 @@
    },
    methods: {
      fillZone(zone) {
-       return this.activeZones.includes(zone)
-        ? '#2196F3'
-        : '#000'
+       if (this.activeZones.includes(zone)) {
+         return 'active'
+       }
+       return ''
      }
    }
   }
@@ -193,5 +194,11 @@
   svg {
     height: 60vh;
     width: auto;
+  }
+  svg path, svg polyline {
+    fill: #757575;
+  }
+  svg g.active path{
+    fill: #1976d2;
   }
 </style>

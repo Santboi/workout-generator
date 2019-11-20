@@ -12,15 +12,20 @@
         <span class="font-weight-bold">Myo</span>
       </div>
 
-      <v-spacer></v-spacer>
+      <v-spacer />
 
-      <v-btn text small class="text-capitalize" :to="'/workouts'">Workouts</v-btn>
+      <SpeedDial />
     </v-app-bar>
 </template>
 
 <script>
+  import SpeedDial from '@/components/SpeedDial.vue'
+
   export default {
     name: 'toolbar',
+    components: {
+      SpeedDial
+    },
     methods: {
       navigateHome() {
         if (this.$route.name !== 'home') this.$router.push('/')

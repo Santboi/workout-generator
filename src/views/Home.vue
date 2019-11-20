@@ -4,7 +4,7 @@
     justify="center"
     align="start"
   >
-    <v-col cols="10">
+    <v-col cols="8">
       <v-row justify="center">
         <MuscleModel
           :active-zones="activeZones"
@@ -18,24 +18,10 @@
           hide-details
         />
       </v-row>
-      <v-row class="mt-5">
-        <v-col
-          class="zones-container"
-          cols="12"
-        >
-          <span class="d-block grey--text text--darken-1 mb-2 caption">active workouts</span>
-          <v-chip
-            v-for="zone in activeZones"
-            :key="zone"
-            close
-            color="blue"
-            text-color="white"
-            @click:close="removeZone(zone)"
-            class="mr-2 mb-2"
-          >
-            {{ zone }}
-          </v-chip>
-        </v-col>
+    </v-col>
+    <v-col cols="10">
+      <v-row>
+        <ZoneList :zones="activeZones"/>
       </v-row>
     </v-col>
   </v-row>
@@ -44,11 +30,13 @@
 <script>
 // @ is an alias to /src
 import MuscleModel from '@/components/muscle_model'
+import ZoneList from '@/components/ZoneList.vue'
 
 export default {
   name: 'home',
   components: {
-    MuscleModel
+    MuscleModel,
+    ZoneList
   },
   data() {
     return {
@@ -63,20 +51,5 @@ export default {
       return this.showingFront ? 'Front' : 'Back'
     }
   },
-  methods: {
-    removeZone(zone) {
-      this.$store.dispatch('removeZone', zone);
-    }
-  }
 }
 </script>
-
-<style scoped>
-  .zones-container {
-    height: 125px;
-    max-height: 125px;
-    overflow: auto;
-    background-color: #DDD;
-    border-radius: 8px;
-  }
-</style>

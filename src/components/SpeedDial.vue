@@ -7,41 +7,34 @@
     :left="left"
     :direction="direction"
     :transition="transition"
+    class="speed-dial__button"
   >
     <template #activator>
       <v-btn
         v-model="expanded"
-        color="blue darken-2"
+        color="blue"
         dark
         fab
+        large
       >
         <v-icon v-if="expanded">mdi-close</v-icon>
-        <v-icon v-else>mdi-account-circle</v-icon>
+        <v-icon v-else>mdi-menu</v-icon>
       </v-btn>
     </template>
     <v-btn
       fab
       dark
-      small
-      color="green"
-    >
-      <v-icon>mdi-pencil</v-icon>
-    </v-btn>
-    <v-btn
-      fab
-      dark
-      small
       color="indigo"
     >
-      <v-icon>mdi-plus</v-icon>
+      <v-icon>mdi-star</v-icon>
     </v-btn>
     <v-btn
       fab
       dark
-      small
-      color="red"
+      color="blue"
+      @click="generateWorkout"
     >
-      <v-icon>mdi-delete</v-icon>
+      <v-icon>mdi-dumbbell</v-icon>
     </v-btn>
   </v-speed-dial>
 </template>
@@ -49,7 +42,7 @@
   export default {
     name: 'SpeedDial',
     data: () => ({
-      direction: 'top',
+      direction: 'bottom',
       expanded: false,
       fling: false,
       tabs: null,
@@ -59,7 +52,6 @@
       left: false,
       transition: 'slide-y-reverse-transition',
     }),
-
     computed: {
       activeFab () {
         switch (this.tabs) {
@@ -70,20 +62,16 @@
         }
       },
     },
-
-    watch: {
-      top (val) {
-        this.bottom = !val
-      },
-      right (val) {
-        this.left = !val
-      },
-      bottom (val) {
-        this.top = !val
-      },
-      left (val) {
-        this.right = !val
-      },
-    },
+    methods: {
+      generateWorkout() {
+        alert('generating');
+      }
+    }
   }
 </script>
+
+<style scoped>
+  .speed-dial__button {
+    transform: translateY(30px)
+  }
+</style>

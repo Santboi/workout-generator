@@ -7,7 +7,7 @@
     <path class="st0" d="M209,102l1,1L209,102 M223,120l1,1L223,120z"/>
     <!-- forearms -->
     <g
-      :fill="fillZone('forearms')"
+      :class="fillZone('forearms')"
       @click="handleZoneClick('forearms')"
     >
       <path d="M87,272c-8.6,9.9-17.4,22.5-18,36C78.9,300.4,95.1,285.5,87,272 M310,272c-4.1,17.4,8.6,24.3,18,37h1
@@ -43,7 +43,7 @@
 
     <!-- glutes -->
     <g
-      :fill="fillZone('glutes')"
+      :class="fillZone('glutes')"
       @click="handleZoneClick('glutes')"
     >
       <path d="M147,348l24-10C167.2,312.4,150.8,334.1,147,348 M233,323l-6,15l24,11C248.6,338.8,242.2,328.3,233,323z"/>
@@ -54,7 +54,7 @@
     </g>
     <!-- calves -->
     <g
-      :fill="fillZone('calves')"
+      :class="fillZone('calves')"
       @click="handleZoneClick('calves')"
     >
       <path d="M165,561c-7.7,20-14.3,41.3-14,63c0.1,7.5,4,22.7,14.9,18.3c6.7-2.7,3.6-13.8,3.1-19.3c-0.9-12.3-1-25.8,0.2-38
@@ -79,7 +79,7 @@
 
     <!-- trapezius -->
     <g
-      :fill="fillZone('trapezius')"
+      :class="fillZone('trapezius')"
       @click="handleZoneClick('trapezius')"
     >
       <path d="M181,136h-1l4-33h-1l-6.6,36.3L164,151c11.5,3,26.1,1.5,30.9-11c2.8-7.5,1.6-15.8,5.1-23c1.3,10.7,0.3,27.5,11.9,33
@@ -99,7 +99,7 @@
 
     <!-- triceps -->
     <g
-      :fill="fillZone('triceps')"
+      :class="fillZone('triceps')"
       @click="handleZoneClick('triceps')"
     >
       <path d="M125,212c-11.6,5.7-15,24.4-15,36c0,3.8-0.6,10.7,3.4,12.9c4.8,2.7,9.2-6.7,10.7-9.9C129.2,239.7,127.8,223.8,125,212"/>
@@ -116,7 +116,7 @@
 
     <!-- back -->
     <g
-      :fill="fillZone('back')"
+      :class="fillZone('back')"
       @click="handleZoneClick('back')"
     >
       <path d="M170,222c-5.3-12.6-14.8-21.5-16-36c-9.3,1-28.1,20.2-22.9,30.8C136.5,227.6,161.3,226.3,170,222"/>
@@ -131,7 +131,7 @@
 
     <!-- lower back -->
     <g
-      :fill="fillZone('lower back')"
+      :class="fillZone('lower back')"
       @click="handleZoneClick('lower back')"
     >
       <path d="M160,315c9.3,3.2,13.8,12.4,16.9,21c5.6,15.4,9.8,30.3,19.1,44c3.2-7.6,1-19.7,1-28v-63c0-8,2.2-23-4.1-29.4
@@ -142,7 +142,7 @@
 
     <!-- hamstring -->
     <g
-      :fill="fillZone('hamstring')"
+      :class="fillZone('hamstring')"
       @click="handleZoneClick('hamstring')"
     >
       <path d="M156,569h1c3.4-13.1,9.5-25.6,11.6-39c2.9-18.8,0.4-39,0.4-58c0-14,2-30.7-3-44c-16.1,3.9-15,20.8-15.8,34.8
@@ -174,9 +174,10 @@
    },
    methods: {
      fillZone(zone) {
-       return this.activeZones.includes(zone)
-        ? '#2196F3'
-        : '#000'
+       if (this.activeZones.includes(zone)) {
+         return 'active'
+       }
+       return ''
      }
    }
   }
@@ -186,5 +187,11 @@
   svg {
     height: 60vh;
     width: auto;
+  }
+  svg path {
+    fill: #757575;
+  }
+  svg g.active path{
+    fill: #1976d2;
   }
 </style>
