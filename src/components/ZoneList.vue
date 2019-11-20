@@ -3,7 +3,7 @@
     class="zones-container elevation-3"
     cols="12"
   >
-    <span class="d-block grey--text text--darken-1 mb-2 caption">active workouts</span>
+    <span class="d-block grey--text text--darken-1 mb-2 caption">muscle groups</span>
     <v-chip
       v-for="zone in zones"
       :key="zone"

@@ -23,15 +23,15 @@
     </template>
     <v-btn
       fab
-      dark
-      color="indigo"
+      light
+      to='/workouts'
     >
       <v-icon>mdi-star</v-icon>
     </v-btn>
     <v-btn
       fab
       dark
-      color="blue"
+      color="#424242"
       @click="generateWorkout"
     >
       <v-icon>mdi-dumbbell</v-icon>
