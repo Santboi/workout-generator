@@ -4,7 +4,7 @@
   >
     <v-card-title>{{ exercise.name }}</v-card-title>
     <v-card-text v-html="exercise.description"/>
-    <v-card-text>
+    <v-card-text class="pt-0">
       <v-row>
         <v-col :cols="6">
           <v-text-field
@@ -48,19 +48,12 @@
         <v-col :cols="12">
           <v-btn
             large
-            color="primary"
+            :color="!timer.ongoing ? 'primary' : 'error'"
             width="100%"
             @click="timer.ongoing ? stopTimer() : startTimer()"
           >
-            Start Sets
+            {{ !timer.ongoing ? 'Start Sets' : 'End' }}
           </v-btn>
-          <!-- <v-btn
-            large
-            color="primary"
-            width="100%"
-          >
-            Complete
-          </v-btn> -->
         </v-col>
       </v-row>
     </v-card-text>
