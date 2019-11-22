@@ -48,11 +48,12 @@
         <v-col :cols="12">
           <v-btn
             large
-            :color="!timer.ongoing ? 'primary' : 'error'"
+            :color="submitColor"
             width="100%"
             @click="timer.ongoing ? stopTimer() : startTimer()"
+            :disabled="finished"
           >
-            {{ !timer.ongoing ? 'Start Sets' : 'End' }}
+            {{ submitText }}
           </v-btn>
         </v-col>
       </v-row>
@@ -67,6 +68,7 @@ export default {
     name: 'ExerciseCard',
     data() {
       return {
+        completed: false,
         timer: {
           elapsed: 0,
           ongoing: false,
@@ -80,6 +82,24 @@ export default {
       }
     },
     computed: {
+      submitColor() {
+        if (this.completed) {
+          return 'success'
+        } else  if (!this.timer.ongoing) {
+          return 'primary'
+        } else if  (this.timer.ongoing) {
+          return 'error'
+        }
+      },
+      submitText() {
+        if (this.completed) {
+          return 'Finished'
+        } else  if (!this.timer.ongoing) {
+          return 'Start Sets'
+        } else if  (this.timer.ongoing) {
+          return 'End'
+        }
+      },
       timeElapsed() {
         return Math.round((this.timer.elapsed / 1000), 2)
       }
@@ -96,6 +116,7 @@ export default {
         this.timer.ongoing = false
         this.stopwatch.stop()
         this.timer.elapsed = this.stopwatch.read()
+        this.completed = true
       }
     },
     
