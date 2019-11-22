@@ -1,6 +1,7 @@
 <template>
   <v-row>
     <v-col :cols="12">
+      <v-progress-linear :value="progress"/>
       <h1 class="text-center headline font-weight-bold mb-2 mt-5">Today's Exercise</h1>
       <h2 class="text-center subtitle-1 mb-5">{{ todaysDate }}</h2>
       
@@ -33,6 +34,9 @@ export default {
       today = mm + '/' + dd + '/' + yyyy;
 
       return today
+    },
+    progress() {
+      return 50
     },
     ...mapState('exerciseModule', ['selected_workout_options'])
   },

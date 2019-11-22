@@ -44,10 +44,10 @@
     name: 'Create',
     computed: {
       selectedWorkoutOptions: {
-        get () {
+        get() {
           return this.$store.state.exerciseModule.selected_workout_options
         },
-        set (optionsArr) {
+        set(optionsArr) {
           this.updateSelectedWorkoutOptions(optionsArr)
         }
       },

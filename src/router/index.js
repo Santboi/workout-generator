@@ -53,7 +53,7 @@ const router = new VueRouter({
   routes,
   scrollBehavior (to, from, savedPosition) {
     if (to.name === 'workout') {
-      return { x: 0, y: 0 }
+      return { x: 0, y: 0 } 
     }
   }
 })

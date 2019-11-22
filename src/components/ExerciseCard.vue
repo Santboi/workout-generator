@@ -33,17 +33,16 @@
             placeholder="Placeholder"
             type="number"
             filled
-            
           />
         </v-col>
         <v-col :cols="6">
           <v-text-field
+            :value="timeElapsed"
             hide-details
-            label="Time Elapsed"
+            label="Time Elapsed (s)"
             placeholder="0"
-            type="number"
             filled
-            
+            readonly
           />
         </v-col>
         <v-col :cols="12">
@@ -51,7 +50,7 @@
             large
             color="primary"
             width="100%"
-            @click="startTimer"
+            @click="timer.ongoing ? stopTimer() : startTimer()"
           >
             Start Sets
           </v-btn>
@@ -67,23 +66,45 @@
     </v-card-text>
   </v-card>
 </template>
-
 <script>
+/* eslint-disable */
+import Stopwatch from 'statman-stopwatch'
+
 export default {
     name: 'ExerciseCard',
+    data() {
+      return {
+        timer: {
+          elapsed: 0,
+          ongoing: false,
+        }
+      }
+    },
     props: {
       exercise: {
         type: Object,
         required: true
       }
     },
-    data() {
-      return {}
+    computed: {
+      timeElapsed() {
+        return Math.round((this.timer.elapsed / 1000), 2)
+      }
+    },
+    mounted() {
+      this.stopwatch = new Stopwatch(this.exercise.name, false)
     },
     methods: {
       startTimer() {
-        alert('started timer')
+        this.timer.ongoing = true
+        this.stopwatch.start()
+      },
+      stopTimer() {
+        this.timer.ongoing = false
+        this.stopwatch.stop()
+        this.timer.elapsed = this.stopwatch.read()
       }
-    }
+    },
+    
 }
 </script>
