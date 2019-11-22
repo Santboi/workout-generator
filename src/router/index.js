@@ -1,7 +1,6 @@
 /* eslint-disable */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import store from '../store'
 
 import Create from '../views/Create.vue'
 import Home from '../views/Home.vue'
@@ -51,18 +50,17 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  routes
+  routes,
+  scrollBehavior (to, from, savedPosition) {
+    if (to.name === 'workout') {
+      return { x: 0, y: 0 }
+    }
+  }
 })
 
 // global router interceptor
-router.beforeEach((to, from, next) => {
-  if (to.path !== '/') {
-    (store.state.exerciseModule.zones.length === 0)
-      ? router.push({ path: '/'})
-      : next()
-    return
-  }
-  next()
-})
+// router.beforeEach((to, from, next) => {
+//   next()
+// })
 
 export default router
