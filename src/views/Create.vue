@@ -27,7 +27,7 @@
           </v-list-item-content>
           <v-list-item-action>
             <v-checkbox
-              v-model="selectedExercises"
+              v-model="selectedWorkoutOptions"
               :value="{name, description}"
             />
           </v-list-item-action>
@@ -38,21 +38,24 @@
   </v-row>
 </template>
 <script>
-  import { mapState } from 'vuex'
+  import { mapState, mapActions } from 'vuex'
 
   export default {
     name: 'Create',
-    data(){
-      return {
-        selectedExercises: [],
-      }
-    },
     computed: {
-      exerciseOptionsArr() {
-        return Object.keys(this.exerciseOptions).map(i => this.exerciseOptions[i])
+      selectedWorkoutOptions: {
+        get () {
+          return this.$store.state.exerciseModule.selected_workout_options
+        },
+        set (optionsArr) {
+          this.updateSelectedWorkoutOptions(optionsArr)
+        }
       },
       ...mapState('exerciseModule', ['create_workout_options'])
     },
+    methods: {
+      ...mapActions('exerciseModule', ['updateSelectedWorkoutOptions'])
+    }
   }
 </script>
 

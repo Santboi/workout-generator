@@ -9,7 +9,7 @@
         @click="navigateHome"
       >
         <v-icon class="mr-2">mdi-weight-lifter</v-icon>
-        <span class="font-weight-bold">Myo</span>
+        <span class="font-weight-bold">{{ company_name }}</span>
       </div>
 
       <v-spacer />
@@ -30,7 +30,7 @@
 
 <script>
   import SpeedDial from '@/components/SpeedDial.vue'
-  import { mapActions } from 'vuex'
+  import { mapState, mapActions } from 'vuex'
 
   export default {
     name: 'toolbar',
@@ -44,6 +44,7 @@
       showSpeedDial() {
         return this.$route.name === 'home'
       },
+      ...mapState('configModule', ['company_name'])
     },
     methods: {
       navigateHome() {

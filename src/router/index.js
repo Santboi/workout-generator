@@ -1,5 +1,7 @@
+/* eslint-disable */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '../store'
 
 import Create from '../views/Create.vue'
 import Home from '../views/Home.vue'
@@ -10,6 +12,7 @@ import Toolbar from '../components/Toolbar.vue'
 import SpeedDial from '../components/SpeedDial.vue'
 
 Vue.use(VueRouter)
+
 
 const routes = [
   {
@@ -49,6 +52,17 @@ const routes = [
 
 const router = new VueRouter({
   routes
+})
+
+// global router interceptor
+router.beforeEach((to, from, next) => {
+  if (to.path !== '/') {
+    (store.state.exerciseModule.zones.length === 0)
+      ? router.push({ path: '/'})
+      : next()
+    return
+  }
+  next()
 })
 
 export default router

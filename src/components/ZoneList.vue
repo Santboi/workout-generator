@@ -18,6 +18,7 @@
   </v-col>
 </template>
 <script>
+  import { mapActions } from 'vuex'
   export default {
     name: 'zoneList',
     props: {
@@ -27,9 +28,7 @@
       }
     },
     methods: {
-      removeZone(zone) {
-        this.$store.dispatch('removeZone', zone);
-      }
+      ...mapActions('exerciseModule', ['removeZone'])
     }
   }
 </script>
