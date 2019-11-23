@@ -51,7 +51,7 @@
             :color="submitColor"
             width="100%"
             @click="timer.ongoing ? stopTimer() : startTimer()"
-            :disabled="finished"
+            :disabled="completed"
           >
             {{ submitText }}
           </v-btn>
@@ -117,7 +117,8 @@ export default {
         this.stopwatch.stop()
         this.timer.elapsed = this.stopwatch.read()
         this.completed = true
-      }
+        this.$emit('complete-exercise')
+      },
     },
     
 }

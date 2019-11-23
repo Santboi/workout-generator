@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-col :cols="12">
-      <v-progress-linear :value="progress"/>
+      <v-progress-linear :value="workoutProgress"/>
       <h1 class="text-center headline font-weight-bold mb-2 mt-5">Today's Exercise</h1>
       <h2 class="text-center subtitle-1 mb-5">{{ todaysDate }}</h2>
       
@@ -10,6 +10,7 @@
         v-for="(exercise, i) in selected_workout_options"
         :key="`${exercise}-${i}`"
         :exercise="exercise"
+        @complete-exercise="completeExercise"
       />
     </v-col>
   </v-row>
@@ -17,7 +18,7 @@
 <script>
 /* eslint-disable */
 import ExerciseCard from '../components/ExerciseCard.vue'
-import { mapState } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Workout',
@@ -35,10 +36,17 @@ export default {
 
       return today
     },
-    progress() {
-      return 50
-    },
-    ...mapState('exerciseModule', ['selected_workout_options'])
+    ...mapState('exerciseModule', ['selected_workout_options', 'currentWorkout']),
+    ...mapGetters('exerciseModule', ['workoutProgress'])
   },
+  methods: {
+    completeExercise() {
+      this.updateCurrentWorkoutProgression('add')
+    },
+    uncompleteExercise() {
+      this.updateCurrentWorkoutProgression('remove')
+    },
+    ...mapActions('exerciseModule', ['updateCurrentWorkoutProgression'])
+  }
 }
 </script>

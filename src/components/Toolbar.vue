@@ -20,7 +20,7 @@
           v-if="onCreateView"
           color="white"
           class="primary--text"
-          :to="'/workout'"
+          @click="submitWorkout"
         >
           Create
         </v-btn>
@@ -29,6 +29,7 @@
 </template>
 
 <script>
+  /* eslint-disable */
   import SpeedDial from '@/components/SpeedDial.vue'
   import { mapState, mapActions } from 'vuex'
 
@@ -44,13 +45,24 @@
       showSpeedDial() {
         return this.$route.name === 'home'
       },
-      ...mapState('configModule', ['company_name'])
+      ...mapState('configModule', ['company_name']),
+      ...mapState('exerciseModule', ['selected_workout_options'])
     },
     methods: {
       navigateHome() {
         if (this.$route.name !== 'home') this.$router.push('/')
       },
-      ...mapActions('exerciseModule', ['submitWorkout'])
+      submitWorkout() {
+        let workout = {
+          exercises: this.selected_workout_options,
+          exercises_total: this.selected_workout_options.length,
+          exercises_completed: 0,
+        }
+
+        this.setCurrentWorkout(workout)
+        this.$router.push('/workout')
+      },
+      ...mapActions('exerciseModule', ['setCurrentWorkout'])
     } 
   }
 </script>

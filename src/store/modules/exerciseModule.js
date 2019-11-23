@@ -20,11 +20,12 @@ const exerciseModule = {
       shoulders: [2],
       quadriceps: [10],
     },
-    create_workout_options: {},
-    current_workout: {
-      name: 'this is a workout',
-      exercises: []
+    currentWorkout: {
+      exercises: [],
+      exercises_total: 0,
+      exercises_completed: 0
     },
+    create_workout_options: {},
     favorited_workouts: [],
     selected_workout_options: [],
     zones: [],
@@ -33,8 +34,14 @@ const exerciseModule = {
     setCreateWorkoutOptions(state, options) {
       state.create_workout_options = options
     },
+    setCurrentWorkout(state, workout) {
+      state.currentWorkout = Object.assign({}, workout)
+    },
     addZone(state, zone) {
       state.zones.push(zone)
+    },
+    updateCurrentWorkoutProgression(state, addOrRemove) {
+      (addOrRemove === 'add') ? state.currentWorkout.exercises_completed++ : state.currentWorkout.exercises_completed--
     },
     removeZone(state, zone) {
       const index = state.zones.indexOf(zone)
@@ -90,13 +97,23 @@ const exerciseModule = {
       context.commit('removeZone', zone)
     },
     saveWorkout({commit, state}) {
-      console.log('test');
+      console.log('saving workout!')
+    },
+    setCurrentWorkout(context, workout) {
+      context.commit('setCurrentWorkout', workout)
     },
     updateSelectedWorkoutOptions(context, optionsArr) {
       context.commit('updateSelectedWorkoutOptions', optionsArr)
+    },
+    updateCurrentWorkoutProgression(context, addOrRemove) {
+      context.commit('updateCurrentWorkoutProgression', addOrRemove)
     }
   },
-  getters: {},
+  getters: {
+    workoutProgress: state => {
+      return (state.currentWorkout.exercises_completed / state.currentWorkout.exercises_total) * 100
+    },
+  },
 }
 
 export default exerciseModule
