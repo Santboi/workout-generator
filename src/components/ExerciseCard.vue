@@ -30,7 +30,7 @@
           <v-text-field
             hide-details
             label="Reps"
-            placeholder="Placeholder"
+            placeholder="10"
             type="number"
             filled
           />
