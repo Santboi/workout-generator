@@ -2,7 +2,6 @@
   <v-app>
     <!-- toolbar -->
     <router-view name="toolbar" />
-
     <v-content>
       <v-container fill-height align-start>
         <!-- aux -->

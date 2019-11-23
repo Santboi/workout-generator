@@ -4,7 +4,7 @@ import VueRouter from 'vue-router'
 
 import Create from '../views/Create.vue'
 import Home from '../views/Home.vue'
-import Progress from '../views/Progress.vue'
+import MyProgress from '../views/MyProgress.vue'
 import Workout from '../views/Workout.vue'
 
 import Toolbar from '../components/Toolbar.vue'
@@ -24,10 +24,10 @@ const routes = [
     },
   },
   {
-    path: '/progress',
-    name: 'progress',
+    path: '/my-progress',
+    name: 'my-progress',
     components: {
-      default: Progress,
+      default: MyProgress,
       toolbar: Toolbar,
     }
   },

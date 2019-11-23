@@ -18,11 +18,21 @@
       </v-btn>
     </template>
 
-    <!-- favorited workouts -->
+    <!-- progress workouts -->
     <v-btn
       fab
       light
-      to='/favorites'
+      color="primary"
+      to='/account'
+    >
+      <v-icon>mdi-account</v-icon>
+    </v-btn>
+
+    <!-- progress workouts -->
+    <v-btn
+      fab
+      light
+      to='/my-progress'
     >
       <v-icon>mdi-star</v-icon>
     </v-btn>
