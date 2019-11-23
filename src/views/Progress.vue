@@ -1,5 +1,5 @@
 <template>
-  <div class="workouts">
+  <div class="progress">
     <ul>
       <li>my workout</li>
       <li>my workout</li>
@@ -9,6 +9,6 @@
 </template>
 <script>
 export default {
-  name: 'workouts'
+  name: 'progress'
 }
 </script>

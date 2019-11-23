@@ -1,5 +1,50 @@
 <template>
   <v-row>
+    <v-dialog
+      v-model="completedWorkoutModal.show"
+      persistent
+      overlay-color="primary"
+      overlay-opacity=".5"
+    >
+      <v-card
+        color="primary"
+        class="pa-5"
+      >
+        <v-card-title class="justify-center">
+          <span class="white--text display-1 font-weight-bold">You did it!</span>
+        </v-card-title>
+        <v-card-text class="justify-center align-center my-5">
+          <v-row justify="space-around px-5">
+            <v-icon class="spinner--slower yellow--text display-3">mdi-star</v-icon>
+            <v-icon class="spinner--slower yellow--text display-3">mdi-star</v-icon>
+            <v-icon class="spinner--slower yellow--text display-3">mdi-star</v-icon>
+          </v-row>
+        </v-card-text>
+        <v-card-text>
+          <v-row justify="space-between">
+            <v-col :cols="12">
+                <v-btn
+                  block
+                  outlined
+                  color="white"
+                  class="mb-5"
+                  :to="{name: 'progress'}"
+                >
+                  View Progress
+                </v-btn>
+                <v-btn
+                  @click="endWorkout"
+                  class="primary--text"
+                  block
+                  :loading="endWorkoutLoading"
+                >
+                  End Workout
+                </v-btn>
+            </v-col>
+          </v-row>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
     <v-col :cols="12">
       <v-progress-linear :value="workoutProgress"/>
       <h1 class="text-center headline font-weight-bold mb-2 mt-5">Today's Exercise</h1>
@@ -25,14 +70,22 @@ export default {
   components: {
     ExerciseCard
   },
+  data() {
+    return {
+      completedWorkoutModal: {
+        show: false,
+      },
+      endWorkoutLoading: false,
+    }
+  },
   computed: {
     todaysDate() {
-      let today = new Date();
-      const dd = String(today.getDate()).padStart(2, '0');
-      const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-      const yyyy = today.getFullYear();
+      let today = new Date()
+      const dd = String(today.getDate()).padStart(2, '0')
+      const mm = String(today.getMonth() + 1).padStart(2, '0')
+      const yyyy = today.getFullYear()
 
-      today = mm + '/' + dd + '/' + yyyy;
+      today = mm + '/' + dd + '/' + yyyy
 
       return today
     },
@@ -40,6 +93,11 @@ export default {
     ...mapGetters('exerciseModule', ['workoutProgress'])
   },
   methods: {
+    endWorkout() {
+      this.endWorkoutLoading = true
+
+      this.endWorkoutLoading = false
+    },
     completeExercise() {
       this.updateCurrentWorkoutProgression('add')
     },
@@ -47,6 +105,13 @@ export default {
       this.updateCurrentWorkoutProgression('remove')
     },
     ...mapActions('exerciseModule', ['updateCurrentWorkoutProgression'])
+  },
+  watch: {
+    workoutProgress() {
+      if (this.workoutProgress === 100) {
+        this.completedWorkoutModal.show = true
+      }
+    }
   }
 }
 </script>

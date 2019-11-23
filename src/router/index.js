@@ -4,7 +4,7 @@ import VueRouter from 'vue-router'
 
 import Create from '../views/Create.vue'
 import Home from '../views/Home.vue'
-import Favorites from '../views/Favorites.vue'
+import Progress from '../views/Progress.vue'
 import Workout from '../views/Workout.vue'
 
 import Toolbar from '../components/Toolbar.vue'
@@ -24,10 +24,10 @@ const routes = [
     },
   },
   {
-    path: '/favorites',
-    name: 'favorites',
+    path: '/progress',
+    name: 'progress',
     components: {
-      default: Favorites,
+      default: Progress,
       toolbar: Toolbar,
     }
   },

@@ -33,6 +33,27 @@ export default {
 </script>
 
 <style>
+
+/* spinner animation */
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  animation: spin .6s infinite;
+}
+.spinner--slower {
+  animation: spin 1.5s infinite;
+}
+
+/* fade animation */
 .fade-enter-active,
 .fade-leave-active {
   transition-duration: 0.2s;
