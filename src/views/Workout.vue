@@ -14,7 +14,7 @@
           <span class="white--text display-1 font-weight-bold">You did it!</span>
         </v-card-title>
         <v-card-text class="justify-center align-center my-5">
-          <v-row justify="space-around px-5">
+          <v-row justify="space-around" class="px-5">
             <v-icon class="spinner--slower yellow--text display-3">mdi-star</v-icon>
             <v-icon class="spinner--slower yellow--text display-3">mdi-star</v-icon>
             <v-icon class="spinner--slower yellow--text display-3">mdi-star</v-icon>
