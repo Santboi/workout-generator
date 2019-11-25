@@ -28,7 +28,7 @@
                   outlined
                   color="white"
                   class="mb-5"
-                  :to="{name: 'progress'}"
+                  :to="{name: 'my-progress'}"
                 >
                   View Progress
                 </v-btn>
