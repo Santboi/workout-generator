@@ -1,5 +1,6 @@
 /* eslint-disable */
 import axios from 'axios'
+import firebase from 'firebase'
 
 const exerciseModule = {
   namespaced: true,
@@ -15,19 +16,21 @@ const exerciseModule = {
       hamstring: [11],
       lats: [3, 12],
       lower_back: [8, 12],
-      neck: [],
+      neck: [9],
       trapezius: [9],
+      triceps: [5],
       shoulders: [2],
       quadriceps: [10],
     },
+    create_workout_options: {},
     currentWorkout: {
       exercises: [],
       exercises_total: 0,
       exercises_completed: 0
     },
-    create_workout_options: {},
     favorited_workouts: [],
     selected_workout_options: [],
+    workout_log: [],
     zones: [],
   },
   mutations: {
@@ -93,11 +96,22 @@ const exerciseModule = {
       //set zone-exercise options using mutator
       commit('setCreateWorkoutOptions', newExercises)
     },
+    fetchScheduledWorkouts() {
+      console.log("fetching scheduled workouts")
+    },    
     removeZone(context, zone) {
       context.commit('removeZone', zone)
     },
-    saveWorkout({commit, state}) {
-      console.log('saving workout!')
+    saveWorkout({commit, state}, date) {
+      const workout = {
+        date,
+        exercises: state.currentWorkout.exercises.slice(0),
+        zones: state.zones.slice()
+      }
+
+      firebase.firestore().collection('users').doc('X123').update({
+        workout_log: firebase.firestore.FieldValue.arrayUnion(workout)
+      })
     },
     setCurrentWorkout(context, workout) {
       context.commit('setCurrentWorkout', workout)

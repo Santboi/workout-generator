@@ -9,11 +9,18 @@
         </thead>
         <tbody>
           <tr
-            v-for="workout in scheduledWorkouts"
+            v-for="workout in user.workout_log"
             :key="workout.date"
           >
             <td>{{ workout.date }}</td>
-            <td>{{ workout.details }}</td>
+            <td>
+              <span
+                v-for="(zone, i) in workout.zones"
+                :key="i"
+              >
+                {{ zone }}
+              </span>
+            </td>
           </tr>
         </tbody>
       </template>
@@ -21,6 +28,8 @@
   
 </template>
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'WorkoutLogTab',
   data() {
@@ -42,9 +51,7 @@ export default {
     }
   },
   computed: {
-    scheduledWorkouts() {
-      return [{date: '11/22/2019', details: 'asdf asdf'}, {date: '11/19/2019', details: 'asdf asdf'}, {date: '11/17/2019', details: 'asdf asdf'}]
-    }
+    ...mapState('userModule', ['user'])
   }
 }
 </script>

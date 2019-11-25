@@ -42,11 +42,6 @@ export default {
   components: {
     WorkoutLogTab,
     WorkoutScheduleTab,
-  },
-  data() {
-    return {
-      tabs: null
-    }
-  }
+  }, 
 }
 </script>

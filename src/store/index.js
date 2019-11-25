@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 
 import configModule from './modules/configModule'
 import exerciseModule from './modules/exerciseModule'
+import userModule from './modules/userModule'
 
 Vue.use(Vuex)
 
@@ -44,6 +45,7 @@ export default new Vuex.Store({
   },
   modules: {
     configModule,
-    exerciseModule
+    exerciseModule,
+    userModule
   }
 })

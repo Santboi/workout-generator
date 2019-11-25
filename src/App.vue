@@ -18,6 +18,8 @@
 </template>
 
 <script>
+/* eslint-disable */
+import { mapActions } from 'vuex'
 
 import ErrorSnack from './components/ErrorSnack.vue'
 import LoadingModal from './components/LoadingModal.vue'
@@ -27,6 +29,17 @@ export default {
   components: {
     ErrorSnack,
     LoadingModal
+  },
+  async mounted() {
+    try {
+      await this.fetchUser()
+    } catch (error) {
+      console.log(error)
+      this.$store.dispatch('showErrorSnack', 'There was an issue retrieving your user data.')
+    }
+  },
+  methods: {
+    ...mapActions('userModule', ['fetchUser'])
   }
 };
 </script>

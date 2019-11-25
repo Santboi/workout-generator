@@ -43,7 +43,10 @@ export default {
   },
   computed: {
     scheduledWorkouts() {
-      return [{date: '11/23/2019', details: 'asdf asdf'}, {date: '11/23/2019', details: 'asdf asdf'}, {date: '11/23/2019', details: 'asdf asdf'}]
+      return [
+        {date: '12/05/2019', details: 'Back, Biceps, Cardio'},
+        {date: '12/07/2019', details: 'Chest, Triceps, Glutes, Quadriceps'},
+        {date: '12/09/2019', details: 'Hamstring, Forearms'}]
     }
   }
 }

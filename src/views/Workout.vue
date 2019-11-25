@@ -93,9 +93,16 @@ export default {
     ...mapGetters('exerciseModule', ['workoutProgress'])
   },
   methods: {
-    endWorkout() {
+    async endWorkout() {
       this.endWorkoutLoading = true
-
+      // make save workout requests here
+      try {
+        await this.saveWorkout(this.todaysDate)
+        this.endWorkoutLoading = false
+        this.$router.push({name: 'my-progress'})
+      } catch (error) {
+        this.$store.commit('showErrorSnack', 'An error occurred while trying to save your workout.')
+      }
       this.endWorkoutLoading = false
     },
     completeExercise() {
@@ -104,7 +111,7 @@ export default {
     uncompleteExercise() {
       this.updateCurrentWorkoutProgression('remove')
     },
-    ...mapActions('exerciseModule', ['updateCurrentWorkoutProgression'])
+    ...mapActions('exerciseModule', ['updateCurrentWorkoutProgression', 'saveWorkout'])
   },
   watch: {
     workoutProgress() {
